@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "whisper-server"
+version = "0.1.0"
+description = "Local Whisper transcription server using faster-whisper"
+authors = ["Granola Clone"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.9"
+faster-whisper = "^1.0.0"
+fastapi = "^0.109.0"
+uvicorn = "^0.27.0"
+websockets = "^12.0"
+python-multipart = "^0.0.6"
+numpy = "^1.24.0"
+
+[tool.poetry.extras]
+diarization = ["pyannote-audio", "torch"]
+
+[tool.poetry.group.diarization]
+optional = true
+
+[tool.poetry.group.diarization.dependencies]
+pyannote-audio = "^3.3"
+torch = "^2.0"
+
+[tool.poetry.scripts]
+whisper-server = "server:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
